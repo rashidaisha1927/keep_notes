@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keep Notes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Notes sidebar">
+      <header class="sidebar-header">
+        <div>
+          <p class="eyebrow">Workspace</p>
+          <h1>Keep Notes</h1>
+        </div>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <span id="themeIcon">Dark</span>
+        </button>
+      </header>
+
+      <div class="sidebar-actions">
+        <button class="primary-button" id="newNoteButton" type="button">
+          <span aria-hidden="true">+</span>
+          New note
+        </button>
+        <label class="search-box" for="searchInput">
+          <span aria-hidden="true">Search</span>
+          <input id="searchInput" type="search" placeholder="Find by title or note text" autocomplete="off">
+        </label>
+      </div>
+
+      <section class="notes-panel" aria-label="Notes list">
+        <div class="section-title">
+          <span>Pinned</span>
+          <span id="pinnedCount">0</span>
+        </div>
+        <div class="note-list" id="pinnedList"></div>
+
+        <div class="section-title other-title">
+          <span>Others</span>
+          <span id="otherCount">0</span>
+        </div>
+        <div class="note-list" id="otherList"></div>
+
+        <p class="empty-list" id="emptyList">No notes match your search.</p>
+      </section>
+    </aside>
+
+    <main class="editor" aria-label="Note editor">
+      <div class="editor-topbar">
+        <div class="note-date">
+          <span id="createdDay">Today</span>
+          <strong id="createdDate">Select or create a note</strong>
+        </div>
+        <div class="editor-actions">
+          <button class="secondary-button" id="pinButton" type="button">Pin</button>
+          <button class="danger-button" id="deleteButton" type="button">Delete</button>
+        </div>
+      </div>
+
+      <section class="editor-card" id="editorCard">
+        <input id="titleInput" class="title-input" type="text" placeholder="Note title" aria-label="Note title">
+        <textarea id="bodyInput" class="body-input" placeholder="Start writing your note..." aria-label="Note body"></textarea>
+      </section>
+
+      <div class="status-row">
+        <span id="saveStatus">Saved locally</span>
+        <span id="updatedAt"></span>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

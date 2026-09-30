@@ -1,0 +1,466 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --panel: #ffffff;
+  --panel-strong: #f0f4f8;
+  --text: #18202f;
+  --muted: #657084;
+  --line: #d8deea;
+  --accent: #246bfe;
+  --accent-strong: #1553d1;
+  --accent-soft: #e8f0ff;
+  --warning: #b96a12;
+  --warning-soft: #fff3dc;
+  --danger: #c73535;
+  --danger-soft: #ffecec;
+  --shadow: 0 22px 70px rgba(24, 32, 47, 0.12);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111318;
+  --panel: #1b1f27;
+  --panel-strong: #252b36;
+  --text: #f1f4f9;
+  --muted: #a6afbf;
+  --line: #343b49;
+  --accent: #7db0ff;
+  --accent-strong: #a8c9ff;
+  --accent-soft: #1f314f;
+  --warning: #ffc46b;
+  --warning-soft: #49351a;
+  --danger: #ff8a8a;
+  --danger-soft: #4a2528;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(36, 107, 254, 0.08), transparent 34%),
+    linear-gradient(315deg, rgba(185, 106, 18, 0.08), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 24px 20px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.icon-button,
+.secondary-button,
+.danger-button,
+.primary-button {
+  min-height: 42px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.icon-button:hover,
+.secondary-button:hover,
+.danger-button:hover,
+.primary-button:hover {
+  transform: translateY(-1px);
+}
+
+.icon-button {
+  min-width: 66px;
+  padding: 0 12px;
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+.sidebar-actions {
+  display: grid;
+  gap: 14px;
+  padding: 0 24px 20px;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 16px;
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: var(--accent-strong);
+}
+
+.search-box {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.79rem;
+  font-weight: 700;
+}
+
+.search-box input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 0 13px;
+}
+
+.notes-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 16px 24px;
+}
+
+.section-title {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8px 8px;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.other-title {
+  margin-top: 12px;
+}
+
+.note-list {
+  display: grid;
+  gap: 10px;
+}
+
+.note-card {
+  width: 100%;
+  min-height: 116px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 14px;
+  text-align: left;
+  box-shadow: none;
+}
+
+.note-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 42%, var(--panel));
+}
+
+.note-card.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.note-card.pinned {
+  border-color: color-mix(in srgb, var(--warning) 54%, var(--line));
+}
+
+.note-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.note-card h2 {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pin-badge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--warning-soft);
+  color: var(--warning);
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.note-preview {
+  display: -webkit-box;
+  min-height: 42px;
+  margin: 0 0 12px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.note-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.empty-list {
+  display: none;
+  margin: 18px 8px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.empty-list.visible {
+  display: block;
+}
+
+.editor {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-width: 0;
+  padding: 28px;
+}
+
+.editor-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.note-date {
+  min-width: 0;
+}
+
+.note-date span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.note-date strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+}
+
+.editor-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.secondary-button,
+.danger-button {
+  padding: 0 15px;
+}
+
+.secondary-button {
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+.secondary-button.active {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.danger-button {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.editor-card {
+  display: grid;
+  grid-template-rows: auto minmax(240px, 1fr);
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.title-input,
+.body-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.title-input {
+  min-height: 86px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 28px;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.body-input {
+  min-height: 0;
+  padding: 24px 28px 28px;
+  resize: none;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.title-input::placeholder,
+.body-input::placeholder,
+.search-box input::placeholder {
+  color: color-mix(in srgb, var(--muted) 74%, transparent);
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    max-height: 48vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .editor {
+    min-height: 52vh;
+    padding: 20px;
+  }
+
+  .editor-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .editor-actions {
+    width: 100%;
+  }
+
+  .editor-actions button {
+    flex: 1;
+  }
+
+  .title-input {
+    min-height: 72px;
+    padding: 0 18px;
+    font-size: 1.5rem;
+  }
+
+  .body-input {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .sidebar-header,
+  .sidebar-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .notes-panel {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .status-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
